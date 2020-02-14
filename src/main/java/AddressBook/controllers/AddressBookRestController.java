@@ -15,14 +15,14 @@ public class AddressBookRestController {
     @Autowired
     private AddressBookModelRepository addressBookModelRepository;
 
-    @PostMapping("/addressBook")
+    @PostMapping("/newAddressBook")
     public AddressBookModel addressBook() {
         AddressBookModel addressBook = new AddressBookModel();
         addressBookModelRepository.save(addressBook);
         return addressBook;
     }
 
-    @GetMapping("/addressBook")
+    @GetMapping("/getAddressBook")
     public AddressBookModel addressBook(@RequestParam(value="id") long id) {
         AddressBookModel addressBook = addressBookModelRepository.findById(id);
         return addressBook;

@@ -20,8 +20,8 @@ public class TestingWebAppTest {
 
     @Test
     public void createAddressBook() throws Exception {
-        this.mockMvc.perform(post("/addressBook")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(post("/newAddressBook")).andDo(print()).andExpect(status().isOk());
         this.mockMvc.perform(post("/addBuddy").param("id", "1").param("name", "ThomasTheBrykenator").param("phonenumber", "42069")).andDo(print()).andExpect(status().isOk());
-        this.mockMvc.perform(get("/addressBook").param("id", "1")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(get("/getAddressBook").param("id", "1")).andDo(print()).andExpect(status().isOk());
     }
 }

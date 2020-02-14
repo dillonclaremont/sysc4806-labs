@@ -14,6 +14,13 @@ public class AddressBookWebController {
     @Autowired
     private AddressBookModelRepository addressBookModelRepository;
 
+    @GetMapping("/addressBook")
+    public String viewAddressBook(Model model) {
+        Iterable <AddressBookModel> addressBooks = addressBookModelRepository.findAll();
+        model.addAttribute("addressBooks", addressBooks);
+        return "index";
+    }
+
     @GetMapping("/viewAddressBook")
     public String viewAddressBook(@RequestParam(value="id") long id, Model model) {
         AddressBookModel addressBook = addressBookModelRepository.findById(id);
