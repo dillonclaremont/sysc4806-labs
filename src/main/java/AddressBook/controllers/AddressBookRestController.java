@@ -4,31 +4,35 @@ import AddressBook.models.AddressBookModel;
 import AddressBook.models.BuddyInfoModel;
 import AddressBook.repositories.AddressBookModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8082")
 public class AddressBookRestController {
 
     @Autowired
     private AddressBookModelRepository addressBookModelRepository;
 
-    @PostMapping("/restNewAddressBook")
+    @PostMapping("/api/newAddressBook")
     public AddressBookModel addressBook() {
         AddressBookModel addressBook = new AddressBookModel();
         addressBookModelRepository.save(addressBook);
         return addressBook;
     }
 
-    @GetMapping("/restGetAddressBook")
+    @GetMapping("/api/getAddressBooks")
+    public Iterable <AddressBookModel> getAddressBooks() {
+        Iterable <AddressBookModel> addressBooks = addressBookModelRepository.findAll();
+        return addressBooks;
+    }
+
+    @GetMapping("/api/getAddressBook")
     public AddressBookModel addressBook(@RequestParam(value="id") long id) {
         AddressBookModel addressBook = addressBookModelRepository.findById(id);
         return addressBook;
     }
 
-    @PostMapping("/restAddBuddy")
+    @PostMapping("/api/addBuddy")
     public AddressBookModel addBuddy(@RequestParam(value="id") long id, @RequestParam(value="name") String name, @RequestParam(value="phonenumber") String phonenumber ) {
         AddressBookModel addressBook = addressBookModelRepository.findById(id);
         addressBook.addBuddy(name, phonenumber);
@@ -36,7 +40,7 @@ public class AddressBookRestController {
         return addressBook;
     }
 
-    @PostMapping("/restRemoveBuddy")
+    @PostMapping("/api/removeBuddy")
     public AddressBookModel removeBuddy(@RequestParam(value="id") long id, @RequestParam(value="name") String name, @RequestParam(value="phonenumber") String phonenumber ) {
         AddressBookModel addressBook = addressBookModelRepository.findById(id);
         addressBook.removeBuddy(new BuddyInfoModel(name, phonenumber));

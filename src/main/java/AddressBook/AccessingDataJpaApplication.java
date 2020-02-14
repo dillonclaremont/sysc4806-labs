@@ -1,9 +1,9 @@
-//package AddressBook;
+//package index.js;
 //
-//import AddressBook.models.AddressBookModel;
-//import AddressBook.repositories.AddressBookModelRepository;
-//import AddressBook.models.BuddyInfoModel;
-//import AddressBook.repositories.BuddyInfoModelRepository;
+//import index.js.models.AddressBookModel;
+//import index.js.repositories.AddressBookModelRepository;
+//import index.js.models.BuddyInfoModel;
+//import index.js.repositories.BuddyInfoModelRepository;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.boot.CommandLineRunner;
