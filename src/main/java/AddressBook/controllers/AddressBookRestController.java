@@ -15,20 +15,20 @@ public class AddressBookRestController {
     @Autowired
     private AddressBookModelRepository addressBookModelRepository;
 
-    @PostMapping("/newAddressBook")
+    @PostMapping("/restNewAddressBook")
     public AddressBookModel addressBook() {
         AddressBookModel addressBook = new AddressBookModel();
         addressBookModelRepository.save(addressBook);
         return addressBook;
     }
 
-    @GetMapping("/getAddressBook")
+    @GetMapping("/restGetAddressBook")
     public AddressBookModel addressBook(@RequestParam(value="id") long id) {
         AddressBookModel addressBook = addressBookModelRepository.findById(id);
         return addressBook;
     }
 
-    @PostMapping("/addBuddy")
+    @PostMapping("/restAddBuddy")
     public AddressBookModel addBuddy(@RequestParam(value="id") long id, @RequestParam(value="name") String name, @RequestParam(value="phonenumber") String phonenumber ) {
         AddressBookModel addressBook = addressBookModelRepository.findById(id);
         addressBook.addBuddy(name, phonenumber);
@@ -36,7 +36,7 @@ public class AddressBookRestController {
         return addressBook;
     }
 
-    @PostMapping("/removeBuddy")
+    @PostMapping("/restRemoveBuddy")
     public AddressBookModel removeBuddy(@RequestParam(value="id") long id, @RequestParam(value="name") String name, @RequestParam(value="phonenumber") String phonenumber ) {
         AddressBookModel addressBook = addressBookModelRepository.findById(id);
         addressBook.removeBuddy(new BuddyInfoModel(name, phonenumber));

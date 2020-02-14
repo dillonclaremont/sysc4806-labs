@@ -5,12 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p>Hello User!</p>
 <h1>AddressBooks</h1>
+<form action="#" th:action="@{/newAddressBook}" method="post">
+    <input type="submit" value="Add AddressBook"/>
+</form>
 <table>
     <th:block th:each="addressBook: ${addressBooks}">
         <tr>
-            <td th:text="${addressBook.getId()}"></td>
+            <td><a th:href="@{/viewAddressBook(id=${addressBook.getId()})}" th:text="${addressBook.getId()}"></a></td>
         </tr>
     </th:block>
 </table>
